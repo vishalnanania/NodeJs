@@ -1,21 +1,22 @@
 console.log('Starting app.js');
 
+const fs = require('fs');
 const _ = require('lodash');
-// console.log(_.isString(true));
-// console.log(_.isString('Andrew'));
-// var filteredArray = _.uniq(['Andrew',1,1,1,'Andrew',2,4,3,2,3,4]);
-// console.log(filteredArray);
+const yargs = require('yargs');
+const notes = require('./notes.js');
 
-var command = process.argv[2];
+var argv = yargs.argv;
+var title = argv._[0];
 
-if(command === 'add') {
-    console.log('Adding new note');
-}else if (command === 'list') {
-    console.log('listing all notes');
-}else if (command === 'read') {
-    console.log('Reading notes');
-}else if (command === 'remove') {
-    console.log('Removing note');
+if(title === 'add') {
+    notes.addNote(argv.id, argv.title, argv.body)
+}else if (title === 'list') {
+    notes.getAll();
+}else if (title === 'read') {
+    notes.getNote(argv.id);
+}else if (title === 'remove') {
+    notes.removeNote(argv.id);
 }else {
     console.log('command not recognized. e.g node app.js list,add,read,remove');
 } 
+
