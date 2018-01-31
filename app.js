@@ -7,7 +7,7 @@ const notes = require('./notes.js');
 
 var argv = yargs.argv;
 var title = argv._[0];
-
+debugger;
 if(title === 'add') {
     if(_.keys(argv).length == 7){
         notes.addNote(argv.id, argv.title, argv.body);
