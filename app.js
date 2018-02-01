@@ -1,37 +1,49 @@
-console.log('Starting app.js');
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
 const notes = require('./notes.js');
 
-var argv = yargs.argv;
+var argv = yargs
+    .command('add', 'Add a new note', {
+        id: {
+            description: 'id of note',
+            demand: true
+        },
+        title: {
+            description: 'Title of note',
+            demand: true,
+            alias: 't'
+        },
+        body: {
+            description: 'Body of note',
+            demand: true,
+            alias: 'b'
+        }
+    })
+    .command('read', 'Read a new note', {
+        id: {
+            description: 'id of note',
+            demand: true
+        }
+    })
+    .command('remove', 'Remove a new note', {
+        id: {
+            description: 'id of note',
+            demand: true
+        }
+    })
+    .command('list', 'list out notes')    
+    .argv;
 var title = argv._[0];
-debugger;
+
 if(title === 'add') {
-    if(_.keys(argv).length == 7){
-        notes.addNote(argv.id, argv.title, argv.body);
-    }else{
-        console.log("try: node app.js add --id='3' --title='title' --body='msg'");
-    }    
+    notes.addNote(argv.id, argv.title, argv.body);    
 }else if (title === 'list') {
-    if(_.keys(argv).length == 4){
-        notes.getAll();
-    }else{
-        console.log("try: node app.js list");
-    } 
+    notes.getAll(); 
 }else if (title === 'read') {
-    if(_.keys(argv).length == 5){
-        notes.getNote(argv.id);
-    }else{
-        console.log("try: node app.js read --id='id'");
-    }
+    notes.getNote(argv.id);
 }else if (title === 'remove') {
-    if(_.keys(argv).length == 5){
-        notes.removeNote(argv.id);
-    }else{
-        console.log("try: node app.js remove --id='id'");
-    }
+    notes.removeNote(argv.id);
 }else {
     console.log('command not recognized. e.g node app.js list,add,read,remove');
 } 
