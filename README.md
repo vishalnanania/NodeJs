@@ -29,3 +29,13 @@ ______________________________________
 3)	Lodash useful lib for node make things easier. 
 4)  Nodemon is for rerunning the application whenever it detects changes. 
 
+_______________________________________
+
+1) install mongo in local
+2) open command prompt
+3) cd C:\Program Files\MongoDB\Server\3.6\bin
+4) mongod -dbpath C:\Users\U1123352\mongo-data
+5) open new command prompt
+6) cd C:\Program Files\MongoDB\Server\3.6\bin
+7) mongo 
+ 
